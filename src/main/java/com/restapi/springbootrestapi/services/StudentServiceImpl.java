@@ -41,8 +41,13 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public ResponseEntity addStudent(Student student) {
-        studentDao.save(student);
-        return new ResponseEntity(student, HttpStatus.OK);
+        Optional<Student> optRecord = studentDao.findStudent(student);
+        if(optRecord.isPresent()){
+            return new ResponseEntity(optRecord.get(), HttpStatus.OK);
+        }else{
+            studentDao.save(student);
+            return new ResponseEntity(student, HttpStatus.OK);
+        }
     }
 
     @Override
@@ -73,19 +78,13 @@ public class StudentServiceImpl implements StudentService{
     public ResponseEntity getStudentsByName(String studentName) {
         List<Student> currentStudents = studentDao.findByName(studentName);
         return new ResponseEntity(currentStudents, HttpStatus.OK);
-//        if (currentStudent != null) {
-//            return new ResponseEntity(currentStudent, HttpStatus.OK);
-//        }
-//        else {
-//            return new ResponseEntity("No student with this id", HttpStatus.NOT_FOUND);
-//        }
     }
 
-//    @Override
-//    public ResponseEntity deleteStudentsByName(String studentName) {
-//        studentDao.deleteByName(studentName);
-//        return new ResponseEntity("Students deleted successfully", HttpStatus.OK);
-//    }
+    @Override
+    public ResponseEntity deleteStudentsByName(String studentName) {
+        studentDao.deleteByName(studentName);
+        return new ResponseEntity("Students deleted successfully", HttpStatus.OK);
+    }
 
 
 }

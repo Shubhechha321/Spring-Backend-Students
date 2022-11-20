@@ -72,12 +72,12 @@ public class Controller {
     }
 
 
-//    @DeleteMapping("/delete")
-//    public ResponseEntity<Object> deleteStudentsByName(@RequestParam("name") String studentName) {
-//        try {
-//            return this.studentService.deleteStudentsByName(studentName);
-//        } catch (Exception e) {
-//            return new ResponseEntity("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<Object> deleteStudentsByName(@RequestParam("name") String studentName) {
+        try {
+            return this.studentService.deleteStudentsByName(studentName);
+        } catch (Exception e) {
+            return new ResponseEntity("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

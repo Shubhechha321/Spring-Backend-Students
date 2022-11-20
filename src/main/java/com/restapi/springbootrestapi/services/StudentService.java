@@ -18,7 +18,7 @@ public interface StudentService {
 
     public ResponseEntity getStudentsByName(String studentName);
 
-//    public ResponseEntity deleteStudentsByName(String studentName);
+    public ResponseEntity deleteStudentsByName(String studentName);
 
 //    public List<Student> deleteStudent(Long parseLong);
 }
